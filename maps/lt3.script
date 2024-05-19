@@ -184,6 +184,38 @@ void enterMosqueArchive(entity zone)
 	sys.trigger(sys.getEntity(ARCHIVE_SPEAKER));
 }
 
+///////////////////
+// SOAP FACTORY
+///////////////////
+
+void enterSoapVaults(entity zone)
+{
+	sys.wait(1);
+}
+
+void enterSoapGroundFloor(entity zone)
+{
+	float i;
+
+	for(i = 0; i < $lt3_ai_moor_robe_unarmed_8.getNumAttachments(); i++)
+	{
+		entity attachment = $lt3_ai_moor_robe_unarmed_8.getAttachmentInd(i);
+
+		string model = attachment.getKey("model");
+		sys.println("model: " + model);
+
+		if ( model == "models/darkmod/lights/non-extinguishable/lantern_oil_hand.ase" )
+		{	
+			light_ext lantern = attachment;
+			lantern.frob_extinguish();
+
+			//entity light = attachment.getAttachmentInd(0);
+			//sys.println("light name: " + light.getName());
+		}
+
+	}
+}
+
 //////////////////
 // Other stuff
 //////////////////
